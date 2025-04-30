@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Template - Gerador de Temas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Criar Novo Template</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Voltar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="template-form">
+            <h2>Informações do Template</h2>
+            <form id="templateForm" action="/api/templates" method="POST">
+                <div class="form-group">
+                    <label for="domain">Domínio:</label>
+                    <input type="text" id="domain" name="domain" required 
+                           placeholder="exemplo.com.br">
+                </div>
+
+                <div class="form-group">
+                    <label for="niche">Nicho:</label>
+                    <input type="text" id="niche" name="niche" required 
+                           placeholder="Ex: Saúde, Tecnologia, Educação">
+                </div>
+
+                <div class="form-group">
+                    <label>Páginas Obrigatórias:</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="pages" value="about" checked disabled>
+                            Sobre Nós
+                        </label>
+                        <label>
+                            <input type="checkbox" name="pages" value="contact" checked disabled>
+                            Contato
+                        </label>
+                        <label>
+                            <input type="checkbox" name="pages" value="blog" checked disabled>
+                            Blog
+                        </label>
+                        <label>
+                            <input type="checkbox" name="pages" value="privacy" checked disabled>
+                            Política de Privacidade
+                        </label>
+                        <label>
+                            <input type="checkbox" name="pages" value="terms" checked disabled>
+                            Termos de Adesão
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Componentes Base:</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="components" value="header" checked disabled>
+                            Header
+                        </label>
+                        <label>
+                            <input type="checkbox" name="components" value="footer" checked disabled>
+                            Footer
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specifications">Especificações Adicionais:</label>
+                    <textarea id="specifications" name="specifications" 
+                              placeholder="Descreva aqui qualquer requisito específico para o template..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Criar Template</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gerador de Temas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/js/template-form.js"></script>
+</body>
+</html> 

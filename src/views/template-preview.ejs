@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview do Template - <%= template.domain %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Preview do Template</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Voltar</a></li>
+                <li><a href="/templates/<%= template.id %>/edit">Editar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="template-info">
+            <h2><%= template.domain %></h2>
+            <p>Nicho: <%= template.niche %></p>
+            <p>Status: <%= template.status %></p>
+        </section>
+
+        <section class="components">
+            <h3>Componentes</h3>
+            <div class="component-list">
+                <% components.forEach(component => { %>
+                    <div class="component" data-component-id="<%= component.id %>">
+                        <h4><%= component.type %></h4>
+                        <div class="component-preview">
+                            <%- component.code %>
+                        </div>
+                        <div class="component-actions">
+                            <button class="btn approve" data-component-id="<%= component.id %>">Aprovar</button>
+                            <button class="btn modify" data-component-id="<%= component.id %>">Modificar</button>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+
+        <section class="modification-form" style="display: none;">
+            <h3>Solicitar Modificação</h3>
+            <form id="modificationForm">
+                <input type="hidden" name="componentId" id="componentId">
+                <div class="form-group">
+                    <label for="modifications">Descreva as modificações necessárias:</label>
+                    <textarea id="modifications" name="modifications" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gerador de Temas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/js/template-preview.js"></script>
+</body>
+</html> 

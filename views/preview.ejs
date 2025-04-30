@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview do Template - <%= template.name %></title>
+    
+    <!-- Estilos base -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/preview.css">
+    
+    <!-- Estilos dos componentes -->
+    <% template.components.forEach(function(component) { %>
+        <link rel="stylesheet" href="/components/<%= component %>/<%= component %>.css">
+    <% }); %>
+    
+    <!-- Estilos das páginas -->
+    <% template.pages.forEach(function(page) { %>
+        <link rel="stylesheet" href="/pages/<%= page %>/<%= page %>.css">
+    <% }); %>
+</head>
+<body>
+    <header class="preview-header">
+        <h1>Preview do Template: <%= template.name %></h1>
+        <nav class="preview-nav">
+            <select id="pageSelector" onchange="loadPage(this.value)">
+                <option value="">Selecione uma página</option>
+                <% template.pages.forEach(function(page) { %>
+                    <option value="<%= page %>"><%= page.charAt(0).toUpperCase() + page.slice(1) %></option>
+                <% }); %>
+            </select>
+        </nav>
+    </header>
+
+    <main class="preview-content">
+        <div id="componentsList" class="components-list">
+            <h2>Componentes Disponíveis</h2>
+            <ul>
+                <% template.components.forEach(function(component) { %>
+                    <li>
+                        <button onclick="loadComponent('<%= component %>')">
+                            <%= component.charAt(0).toUpperCase() + component.slice(1) %>
+                        </button>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+
+        <div id="previewFrame" class="preview-frame">
+            <iframe id="contentFrame" name="contentFrame" src="/pages/home/home.html"></iframe>
+        </div>
+    </main>
+
+    <!-- Scripts dos componentes -->
+    <% template.components.forEach(function(component) { %>
+        <script src="/components/<%= component %>/<%= component %>.js"></script>
+    <% }); %>
+
+    <!-- Scripts das páginas -->
+    <% template.pages.forEach(function(page) { %>
+        <script src="/pages/<%= page %>/<%= page %>.js"></script>
+    <% }); %>
+
+    <script>
+        function loadPage(page) {
+            if (page) {
+                document.getElementById('contentFrame').src = `/pages/${page}/${page}.html`;
+            }
+        }
+
+        function loadComponent(component) {
+            document.getElementById('contentFrame').src = `/components/${component}/${component}.html`;
+        }
+
+        // Carregar a página inicial por padrão
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage('home');
+        });
+    </script>
+</body>
+</html> 

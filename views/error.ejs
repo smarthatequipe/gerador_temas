@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro - Gerador de Templates</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <style>
+        :root {
+            --error-color: #ef4444;
+            --text-color: #1e293b;
+            --background-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .error-icon {
+            color: var(--error-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            color: var(--error-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+
+        .error-details {
+            background-color: var(--background-color);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            font-family: monospace;
+            text-align: left;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--error-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">⚠️</div>
+        <h1 class="error-title">Ops! Algo deu errado</h1>
+        <p class="error-message"><%= message %></p>
+        
+        <% if (error) { %>
+            <div class="error-details">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <a href="/" class="back-button">Voltar para o início</a>
+    </div>
+</body>
+</html> 

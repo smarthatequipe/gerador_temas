@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview do Componente - <%= component.type %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Preview do Componente</h1>
+        <nav>
+            <ul>
+                <li><a href="/templates/<%= component.templateId %>">Voltar ao Template</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="component-info">
+            <h2><%= component.type %></h2>
+            <p>Status: <%= component.status %></p>
+            <% if (component.modifications) { %>
+                <div class="modifications">
+                    <h3>Modificações Solicitadas</h3>
+                    <p><%= component.modifications %></p>
+                </div>
+            <% } %>
+        </section>
+
+        <section class="component-preview">
+            <h3>Preview</h3>
+            <div class="preview-container">
+                <%- component.code %>
+            </div>
+        </section>
+
+        <section class="component-actions">
+            <button class="btn approve" data-component-id="<%= component._id %>">Aprovar</button>
+            <button class="btn modify" data-component-id="<%= component._id %>">Modificar</button>
+        </section>
+
+        <section class="modification-form" style="display: none;">
+            <h3>Solicitar Modificação</h3>
+            <form id="modificationForm">
+                <textarea name="modifications" placeholder="Descreva as modificações necessárias..." required></textarea>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gerador de Temas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/js/component-preview.js"></script>
+</body>
+</html> 
